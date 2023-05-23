@@ -36,15 +36,6 @@ classdef SolutionData
                   %                     2 : Y-direction;
                   %                     3 : Z-direction;
         FLOAD;    % double, FLOAD(NLOAD), Magnitude of load
-        IJ;       % IJ(NUME,2)， 储存梁单元节点编号
-
-        
-        XNOD;
-        XDIRN;
-        XDIS;
-        VNOD;
-        VDIRN;
-        VVEL;
 
         
         
@@ -95,8 +86,7 @@ classdef SolutionData
         CTIME;       % total compute time;
         ERR;
         GAMMA1;
-        GAMMA2;
-        GAMMA3;
+        GAMMA1;
 
 
         

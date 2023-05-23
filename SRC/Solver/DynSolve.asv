@@ -1,5 +1,5 @@
 %* *****************************************************************
-%* - Function of STAPMAT in Dynamic Solver phase                   *
+%* - Function of STAPMAT in Dynamic Solver phase                           *
 %*                                                                 *
 %* - Purpose:                                                      *
 %*     To solve finite element static equilibrium equations        *
@@ -32,18 +32,6 @@ M = sdata.MASS;
 K = sdata.STIFF;
 Q = sdata.R;
 C = zeros('like',K);
-
-a0 = sdata.INITX;
-Da0 = sdata.INITV;
-
-rho = sdata.SPRHO;
-intimestep = sdata.TSTEP;
-time_limit = sdata.CTIME;
-err = sdata.ERR;
-Gamma1 = sdata.GAMMA1;
-Gamma2 = sdata.GAMMA2;
-Gamma3 = sdata.GAMMA3;
-
 
 sdata.DIS = zeros(NEQ, NLCASE, 'double');
 sdata.STRAIN = zeros(NEQ, NLCASE, 'double');

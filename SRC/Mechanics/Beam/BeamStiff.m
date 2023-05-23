@@ -1,0 +1,159 @@
+%* *****************************************************************
+%* - Function of STAPMAT in stiffness phase                        *
+%*                                                                 *
+%* - Purpose:                                                      *
+%*     Compute the stiffness matrix of truss                       *
+%*                                                                 *
+%* - Call procedures:                                              *
+%*     BeamStiff.m - InitBeam()                                    *
+%*     ./ReadBeam.m - ReadBeam()                                   *
+%*     SRC/Mechanics/Addres.m - Addres()                           *
+%*                                                                 *
+%* - Called by :                                                   *
+%*     SRC/Mechanics/GetStiff.m                                    *
+%*                                                                 *
+%* - Programmed by:                                                *
+%*     LeiYang Zhao, Yan Liu,                                      *
+%*     Computational Dynamics Group, School of Aerospace           *
+%*     Engineering, Tsinghua University, 2019.02.21                *
+%*                                                                 *
+%* *****************************************************************
+
+function BeamStiff()
+
+% Init variables of the element
+InitBeam();
+
+% Read Material and Elements
+ReadBeam();
+
+fprintf('Solution phase ...\n\n');
+
+% calculate addresses of diagonal elements
+Addres();
+
+% Data check Or Solve
+global cdata;
+if (cdata.MODEX == 0) 
+    cdata.TIM(3,:) = clock;
+    cdata.TIM(4,:) = clock;
+    cdata.TIM(5,:) = clock;
+    return; 
+end
+
+% Assemble structure stiffness matrix
+Assemble();
+
+
+
+
+end
+
+% ----------------------- Functions -----------------------------------
+
+% Init parameters of truss element
+function InitBeam()
+global sdata;
+sdata.NNODE = 2;
+sdata.NDOF = 6;
+
+end
+
+% Assemble structure stiffness matrix
+function Assemble()
+global sdata;
+global cdata;
+KLOCAL = zeros(12, 12, 'double');
+LAMBDA = zeros(3, 3, 'double');
+sdata.STIFF = zeros(sdata.NWK, 1, 'double');
+
+NUME = sdata.NUME; MATP = sdata.MATP; XYZ = sdata.XYZ; 
+E = sdata.E; AREA = sdata.AREA; LM = sdata.LM;
+N1 = sdata.N1; N2 = sdata.N2; N3 = sdata.N3;
+for N = 1:NUME
+    MTYPE = MATP(N);
+    
+%   compute the length of beam element
+    DX = XYZ(1, N) - XYZ(4, N);
+    DY = XYZ(2, N) - XYZ(5, N);
+    DZ = XYZ(3, N) - XYZ(6, N);
+    XL2 = DX*DX + DY*DY + DZ*DZ;
+    XL = sqrt(XL2);
+    
+%   TRANSFORMATION MATRIX
+    LAMBDA(:,1) = D / XL;  
+    LAMBDA(1,2) = N1;
+    LAMBDA(2,2) = N2;
+    LAMBDA(3,2) = N3;
+
+    LAMBDA(:,3) = CROSS_PRODUCT(LAMBDA(:,1),LAMBDA(:,2));
+    LAMBDA(:,3) = LAMBDA(:,3)/sqrt(sum(LAMBDA(:,3).*LAMBDA(:,3)));
+
+    LAMBDA(:,2) = CROSS_PRODUCT(LAMBDA(:,3),LAMBDA(:,1));
+    LAMBDA(:,2) = LAMBDA(:,2)/sqrt(sum(LAMBDA(:,2).*LAMBDA(:,2)));
+
+    KLOCAL(1,1) = E(MTYPE) * AREA(MTYPE)/XL;              % E*A/L
+    KLOCAL(2,2) = 12.0 * E(MTYPE) *IZ(MTYPE) /(XL*XL*XL); % 12*E*IZ/L^3
+    KLOCAL(3,3) = 12.0 * E(MTYPE) *IY(MTYPE) /(XL*XL*XL); % 12*E*IY/L^3
+    KLOCAL(4,4) = G(MTYPE) * JP(MTYPE) / XL;              % G*J/L
+    KLOCAL(5,5) = 4.0 * E(MTYPE) *IY(MTYPE) / XL;         % 4*E*IY/L
+    KLOCAL(6,6) = 4.0 * E(MTYPE) *IZ(MTYPE) / XL;         % 4*E*IZ/L
+    KLOCAL(2,6) = 6.0 * E(MTYPE) *IZ(MTYPE) / (XL*XL);    % 6*E*IZ/L^2
+    KLOCAL(3,5) = -6.0 * E(MTYPE) *IY(MTYPE) / (XL*XL);   % 6*E*IY/L^2
+
+    for k = 1:4
+        KLOCAL(k,k+6) = -KLOCAL(k,k);
+    end
+
+    KLOCAL(5,11) = KLOCAL(5,5)/2.0;
+    KLOCAL(6,12) = KLOCAL(6,6)/2.0;
+    KLOCAL(2,12) = KLOCAL(2,6);
+    KLOCAL(3,11) = KLOCAL(3,5);
+    KLOCAL(5,9) = -KLOCAL(3,5);
+    KLOCAL(6,8) = -KLOCAL(2,6);
+
+    for k = 1:6
+        KLOCAL(k+6,k+6) = KLOCAL(k,k);
+    end
+
+    KLOCAL(8,12) = KLOCAL(6,8);  %-KLOCAL(2,6)
+    KLOCAL(9,11) = KLOCAL(5,9);  %-KLOCAL(3,5)
+
+    for i = 2:12
+        for j = 1:i-1
+            KLOCAL(i,j) = KLOCAL(j,i);
+        end
+    end
+
+%   MASS MATRIX
+    MLOCAL = BeamMass(XL);
+
+%   GLOBAL STIFFNESS AND MASS MATRIX
+
+    for I = 1:4
+        for J = 1:4
+            KGLOBAL((I-1)*3+1:I*3,(J-1)*3+1:J*3) = ...
+                    LAMBDA' * KLOCAL((I-1)*3+1:I*3,(J-1)*3+1:J*3) * LAMBDA;
+
+            MGLOBAL((I-1)*3+1:I*3,(J-1)*3+1:J*3) = ...
+                    LAMBDA' * MLOCAL((I-1)*3+1:I*3,(J-1)*3+1:J*3) * LAMBDA;
+        end
+    end
+    
+%   SRC/Mechanics/ADDBAN.m
+    ADDBAN(KGLOBAL, LM(:, N));
+%   SRC/Mechanics/ADDBAN_M.m
+    ADDBAN_M(MGLOBAL, LM(:, N));
+    
+end
+
+% The third time stamp
+cdata.TIM(3, :) = clock;
+
+end
+
+function V3 = CROSS_PRODUCT(V1, V2)
+    V3(1)	= V1(2) * V2(3) - V1(3) * V2(2);
+    V3(2)	= V1(3) * V2(1) - V1(1) * V2(3);
+    V3(3)	= V1(1) * V2(2) - V1(2) * V2(1);
+end

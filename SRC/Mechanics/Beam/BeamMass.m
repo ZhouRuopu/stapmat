@@ -1,0 +1,62 @@
+function MLOCAL = BeamMass(XL)
+   global sdata;
+   MLOCAL = zeros(12, 12, 'double');
+   AREA = sdata.AREA; RHO = sdata.RHO; IY = sdata.IY; IZ = sdata.IZ;
+
+   for N = 1:NUME
+    MTYPE = MATP(N);
+    % SLENDER
+    MLOCAL(1,1) = RHO(MTYPE)*AREA(MTYPE)*XL/3.0;            % RHO*AREA*XL/3
+    MLOCAL(2,2) = 156.0*RHO(MTYPE)*AREA(MTYPE)*XL/420.0;    % 156*RHO*AREA*XL/420 
+    MLOCAL(3,3) = MLOCAL(2,2);   
+    MLOCAL(4,4) = RHO(MTYPE)*JP(MTYPE)*XL/3.0;              % RHO*JP*XL/3
+    MLOCAL(5,5) = RHO(MTYPE)*AREA(MTYPE)*(XL*XL*XL)/105.0;     % 4*RHO*AREA*XL^3/420
+    MLOCAL(6,6) = MLOCAL(5,5);   
+    MLOCAL(3,5) = -22.0*RHO(MTYPE)*AREA(MTYPE)*(XL*XL)/420.0;  %-22*RHO*AREA*L^2/420
+    MLOCAL(2,6) = -MLOCAL(3,5);
+    % + DEEPER
+    MLOCAL(2,2) = MLOCAL(2,2) + 1.2*RHO(MTYPE)*IZ(MTYPE)/XL;   % + 36*RHO*IZ/(30*L)
+    MLOCAL(3,3) = MLOCAL(3,3) + 1.2*RHO(MTYPE)*IY(MTYPE)/XL; 
+    MLOCAL(5,5) = MLOCAL(5,5) + 4.0*RHO(MTYPE)*IY(MTYPE)*XL/30.0;  % + 4*RHO*IY*XL/30
+    MLOCAL(6,6) = MLOCAL(6,6) + 4.0*RHO(MTYPE)*IZ(MTYPE)*XL/30.0;
+    MLOCAL(2,6) = MLOCAL(2,6) + RHO(MTYPE)*IZ(MTYPE)/10.0;     % + 3*RHO*IZ/30
+    MLOCAL(3,5) = MLOCAL(3,5) - RHO(MTYPE)*IY(MTYPE)/10.0;
+
+    % SLENDER
+    MLOCAL(1,7) = RHO(MTYPE)*AREA(MTYPE)*XL/6.0; 
+    MLOCAL(2,8) = 54.0*RHO(MTYPE)*AREA(MTYPE)*XL/420.0;     %  54*RHO*AREA*XL/420 
+    MLOCAL(3,9) = MLOCAL(2,8);
+    MLOCAL(4,10)= RHO(MTYPE)*JP(MTYPE)*XL/6.0;              % RHO*JP*XL/6
+    MLOCAL(5,11)= RHO(MTYPE)*AREA(MTYPE)*(XL*XL*XL)/140.0;     % 3*RHO*AREA*XL^3/420
+    MLOCAL(6,12)= MLOCAL(5,11);
+    % + DEEPER
+    MLOCAL(2,8) = MLOCAL(2,8) - 1.2*RHO(MTYPE)*IZ(MTYPE)/XL;
+    MLOCAL(3,9) = MLOCAL(3,9) - 1.2*RHO(MTYPE)*IY(MTYPE)/XL;
+    MLOCAL(5,11)= MLOCAL(5,11) - RHO(MTYPE)*IY(MTYPE)*XL/30.0;
+    MLOCAL(6,12)= MLOCAL(6,12) - RHO(MTYPE)*IZ(MTYPE)*XL/30.0;
+        
+    % SLENDER
+    MLOCAL(3,11)= 13.0*RHO(MTYPE)*AREA(MTYPE)*(XL*XL)/420.0;  % 13*RHO*AREA*XL^2/420
+    MLOCAL(2,12)= -MLOCAL(3,11);
+    % + DEEPER
+    MLOCAL(3,11) = MLOCAL(3,11) - RHO(MTYPE)*IY(MTYPE)/10.0;   
+    MLOCAL(2,12) = MLOCAL(2,12) + RHO(MTYPE)*IZ(MTYPE)/10.0;  
+    %
+    MLOCAL(5,9) = -MLOCAL(3,11);
+    MLOCAL(6,8) = -MLOCAL(2,12);
+    
+    for L=1:6
+        MLOCAL(L+6,L+6) = MLOCAL(L,L);
+    end
+    MLOCAL(9,11) = -MLOCAL(3,5);
+    MLOCAL(8,12) = -MLOCAL(2,6);
+
+    for I=2:12
+        for J=1:I-1
+            MLOCAL(I,J) = MLOCAL(J,I);
+        end
+    end
+
+   end
+
+end

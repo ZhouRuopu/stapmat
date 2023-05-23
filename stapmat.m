@@ -20,8 +20,9 @@ cdata = ControlData;
 sdata = SolutionData;
 
 % Read InPut file
+global fname;
 fname = 'stap90.in';              % Specify the file name
-ReadFile(fname);
+ReadFile_DYN(fname);
 
 % Write basic data of program 
 WriteParasOut();

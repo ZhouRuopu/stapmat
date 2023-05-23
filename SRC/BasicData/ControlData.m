@@ -36,8 +36,11 @@ classdef ControlData
 
         DYN;           % 判断是否为动力学问题，是为1，否为0;    Rope Zhou
         LINEAR;        % 判断是否开启几何非线性，线性为1，反之0;    Rope Zhou
-        ENDT;          % 计算时间;
-        TSTEP;         % 时间步长;
+
+        LX;
+        NDIS;
+        LV;
+        NVEL;
 
     end
 end

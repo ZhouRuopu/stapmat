@@ -27,6 +27,7 @@ IOUT = cdata.IOUT;
 for N = 1:NUMEG
     NPAR1 = cdata.NPAR(1);
     if (NPAR1 == 1) TrussStress(NUM, N)
+    elseif (NPAR1 == 2) BeamStress(NUM, N)
     else error(' *** ERROR *** No Such Element'); end 
 end
 
