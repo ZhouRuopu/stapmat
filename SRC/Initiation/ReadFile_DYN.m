@@ -18,7 +18,8 @@
 %* *****************************************************************
 
 function ReadFile_DYN(fname)
-fname = strcat('.\Data\', fname);           % Deal the filename
+global fpath;
+fname = strcat(fpath, fname);           % Deal the filename
 
 % Get global class
 global cdata;
@@ -55,11 +56,15 @@ for i = 1:cdata.NUMNP
     ID(1, i) = int64(tmp(2));
     ID(2, i) = int64(tmp(3));
     ID(3, i) = int64(tmp(4));
-    X(i) = double(tmp(5));
-    Y(i) = double(tmp(6));
-    Z(i) = double(tmp(7));
+    ID(4, i) = int64(tmp(5));
+    ID(5, i) = int64(tmp(6));
+    ID(6, i) = int64(tmp(7));
+    X(i) = double(tmp(8));
+    Y(i) = double(tmp(9));
+    Z(i) = double(tmp(10));
 end
 sdata.ID = ID; sdata.X = X; sdata.Y = Y; sdata.Z = Z;
+sdata.BC = ID; sdata.XX = X; sdata.YY = Y; sdata.ZZ = Z;
 %% Compute the number of equations
 sdata.IDOrigin = ID;
 NEQ = 0;
@@ -78,7 +83,8 @@ sdata.NEQ = NEQ;
 %% Read load data
 % Init control data
 NLCASE = cdata.NLCASE;
-sdata.R = zeros(NEQ, NLCASE, 'double');
+NUMNP = cdata.NUMNP; NDOF = 6;
+sdata.R = zeros(NUMNP*NDOF, NLCASE, 'double');
 R = sdata.R;
 % Read data
 for N = 1:cdata.NLCASE
@@ -102,84 +108,85 @@ for N = 1:cdata.NLCASE
     
 %   Compute load vector
     for L = 1:NLOAD
-        II = ID(IDIRN(L), NOD(L));
-        if (II > 0) R(II, N) = R(II, N) + FLOAD(L); end
+        % II = ID(IDIRN(L), NOD(L));
+        % if (II > 0) R(II, N) = R(II, N) + FLOAD(L); end
+        R(6*NOD(L)-6+IDIRN(L)) = R(6*NOD(L)-6+IDIRN(L))+FLOAD(L);
     end
     sdata.NOD = NOD; sdata.IDIRN = IDIRN; sdata.FLOAD = FLOAD; sdata.R = R;
 end
 
 %% Read Displacement
-% Init control data
-NLCASE = cdata.NLCASE;
-sdata.INITX = zeros(NEQ, NLCASE, 'double');
-INITX = sdata.INITX;
-% Read data
-for N = 1:cdata.NLCASE
-    tmp = str2num(fgetl(IIN));
-    cdata.LX = int64(tmp(1)); cdata.NDIS = int64(tmp(2));
-    NDIS = cdata.NDIS;
-%   Init load data
-    sdata.XNOD = zeros(NDIS, 1, 'int64');
-    sdata.XDIRN = zeros(NDIS, 1, 'int64');
-    sdata.XDIS = zeros(NDIS, 1, 'double');
-    XNOD = sdata.XNOD; XDIRN = sdata.XDIRN; XDIS = sdata.XDIS;
-    
-%   Read load data
-    for I = 1:NDIS
-        tmp = str2num(fgetl(IIN));
-        XNOD(I) = int64(tmp(1));
-        XDIRN(I) = int64(tmp(2));
-        XDIS(I) = double(tmp(3));
-    end
-    if (cdata.MODEX == 0) return; end
-    
-%   Compute load vector
-    for L = 1:NDIS
-        II = ID(XDIRN(L), XNOD(L));
-        if (II > 0) INITX(II, N) = INITX(II, N) + XDIS(L); end
-    end
-    sdata.XNOD = XNOD; sdata.XDIRN = XDIRN; sdata.XDIS = XDIS; sdata.INITX = INITX;
-end
-
+% % Init control data
+% NLCASE = cdata.NLCASE;
+% sdata.INITX = zeros(NEQ, NLCASE, 'double');
+% INITX = sdata.INITX;
+% % Read data
+% for N = 1:cdata.NLCASE
+%     tmp = str2num(fgetl(IIN));
+%     cdata.LX = int64(tmp(1)); cdata.NDIS = int64(tmp(2));
+%     NDIS = cdata.NDIS;
+% %   Init load data
+%     sdata.XNOD = zeros(NDIS, 1, 'int64');
+%     sdata.XDIRN = zeros(NDIS, 1, 'int64');
+%     sdata.XDIS = zeros(NDIS, 1, 'double');
+%     XNOD = sdata.XNOD; XDIRN = sdata.XDIRN; XDIS = sdata.XDIS;
+%     
+% %   Read load data
+%     for I = 1:NDIS
+%         tmp = str2num(fgetl(IIN));
+%         XNOD(I) = int64(tmp(1));
+%         XDIRN(I) = int64(tmp(2));
+%         XDIS(I) = double(tmp(3));
+%     end
+%     if (cdata.MODEX == 0) return; end
+%     
+% %   Compute load vector
+%     for L = 1:NDIS
+%         II = ID(XDIRN(L), XNOD(L));
+%         if (II > 0) INITX(II, N) = INITX(II, N) + XDIS(L); end
+%     end
+%     sdata.XNOD = XNOD; sdata.XDIRN = XDIRN; sdata.XDIS = XDIS; sdata.INITX = INITX;
+% end
+% 
 %% Read Velocity
-% Init control data
-NLCASE = cdata.NLCASE;
-sdata.INITV = zeros(NEQ, NLCASE, 'double');
-INITV = sdata.INITV;
-% Read data
-for N = 1:cdata.NLCASE
-    tmp = str2num(fgetl(IIN));
-    cdata.LV = int64(tmp(1)); cdata.NVEL = int64(tmp(2));
-    NVEL = cdata.NVEL;
-%   Init load data
-    sdata.VNOD = zeros(NVEL, 1, 'int64');
-    sdata.VDIRN = zeros(NVEL, 1, 'int64');
-    sdata.VVEL = zeros(NVEL, 1, 'double');
-    VNOD = sdata.VNOD; VDIRN = sdata.VDIRN; VVEL = sdata.VVEL;
-    
-%   Read load data
-    for I = 1:NVEL
-        tmp = str2num(fgetl(IIN));
-        VNOD(I) = int64(tmp(1));
-        VDIRN(I) = int64(tmp(2));
-        VVEL(I) = double(tmp(3));
-    end
-    if (cdata.MODEX == 0) return; end
-    
-%   Compute load vector
-    for L = 1:NVEL
-        II = ID(VDIRN(L), VNOD(L));
-        if (II > 0) INITV(II, N) = INITV(II, N) + VVEL(L); end
-    end
-    sdata.VNOD = VNOD; sdata.VDIRN = VDIRN; sdata.VVEL = VVEL; sdata.INITV = INITV;
-end
+% % Init control data
+% NLCASE = cdata.NLCASE;
+% sdata.INITV = zeros(NEQ, NLCASE, 'double');
+% INITV = sdata.INITV;
+% % Read data
+% for N = 1:cdata.NLCASE
+%     tmp = str2num(fgetl(IIN));
+%     cdata.LV = int64(tmp(1)); cdata.NVEL = int64(tmp(2));
+%     NVEL = cdata.NVEL;
+% %   Init load data
+%     sdata.VNOD = zeros(NVEL, 1, 'int64');
+%     sdata.VDIRN = zeros(NVEL, 1, 'int64');
+%     sdata.VVEL = zeros(NVEL, 1, 'double');
+%     VNOD = sdata.VNOD; VDIRN = sdata.VDIRN; VVEL = sdata.VVEL;
+%     
+% %   Read load data
+%     for I = 1:NVEL
+%         tmp = str2num(fgetl(IIN));
+%         VNOD(I) = int64(tmp(1));
+%         VDIRN(I) = int64(tmp(2));
+%         VVEL(I) = double(tmp(3));
+%     end
+%     if (cdata.MODEX == 0) return; end
+%     
+% %   Compute load vector
+%     for L = 1:NVEL
+%         II = ID(VDIRN(L), VNOD(L));
+%         if (II > 0) INITV(II, N) = INITV(II, N) + VVEL(L); end
+%     end
+%     sdata.VNOD = VNOD; sdata.VDIRN = VDIRN; sdata.VVEL = VVEL; sdata.INITV = INITV;
+% end
 
 %% Read Time step
 sdata.SPRHO = 0;
 sdata.TSTEP = 0;
 sdata.CTIME = 0;
 tmp = str2num(fgetl(IIN));
-sdata.SPRHO =int64(tmp(1)); sdata.TSTEP = int64(tmp(2)); sdata.CTIME = int64(tmp(3));
+sdata.SPRHO =double(tmp(1)); sdata.TSTEP = double(tmp(2)); sdata.CTIME = double(tmp(3));
 
 %% Read ERROR estimation
 sdata.ERR = 0;
@@ -187,7 +194,7 @@ sdata.GAMMA1 = 0;
 sdata.GAMMA2 = 0;
 sdata.GAMMA3 = 0;
 tmp = str2num(fgetl(IIN));
-sdata.ERR =int64(tmp(1)); sdata.GAMMA1 = int64(tmp(2)); sdata.GAMMA2 = int64(tmp(3)); sdata.GAMMA3 = int64(tmp(4));
+sdata.ERR =double(tmp(1)); sdata.GAMMA1 = double(tmp(2)); sdata.GAMMA2 = double(tmp(3)); sdata.GAMMA3 = double(tmp(4));
 
 end
 
@@ -201,7 +208,7 @@ global sdata;
 
 cdata.NPAR = zeros(10, 1, 'int64');
 
-sdata.ID = zeros(3,cdata.NUMNP, 'int64');
+sdata.ID = zeros(6,cdata.NUMNP, 'int64');
 sdata.X = zeros(cdata.NUMNP, 1, 'double');
 sdata.Y = zeros(cdata.NUMNP, 1, 'double');
 sdata.Z = zeros(cdata.NUMNP, 1, 'double');

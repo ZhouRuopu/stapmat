@@ -30,7 +30,7 @@ ReadBeam();
 fprintf('Solution phase ...\n\n');
 
 % calculate addresses of diagonal elements
-Addres();
+% Addres();
 
 % Data check Or Solve
 global cdata;
@@ -65,11 +65,16 @@ global sdata;
 global cdata;
 KLOCAL = zeros(12, 12, 'double');
 LAMBDA = zeros(3, 3, 'double');
-sdata.STIFF = zeros(sdata.NWK, 1, 'double');
 
 NUME = sdata.NUME; MATP = sdata.MATP; XYZ = sdata.XYZ; 
-E = sdata.E; AREA = sdata.AREA; LM = sdata.LM;
+NUMNP = cdata.NUMNP; NDOF = sdata.NDOF;
+E = sdata.E; AREA = sdata.AREA; LM = sdata.LM; G = sdata.G;
+IY = sdata.IY; IZ = sdata.IZ; JP = sdata.IJ;
 N1 = sdata.N1; N2 = sdata.N2; N3 = sdata.N3;
+
+sdata.STIFF = zeros(NUMNP*NDOF, NUMNP*NDOF, 'double');
+sdata.MASS = zeros(NUMNP*NDOF, NUMNP*NDOF, 'double');
+
 for N = 1:NUME
     MTYPE = MATP(N);
     
@@ -77,14 +82,15 @@ for N = 1:NUME
     DX = XYZ(1, N) - XYZ(4, N);
     DY = XYZ(2, N) - XYZ(5, N);
     DZ = XYZ(3, N) - XYZ(6, N);
+    D = [DX, DY, DZ];
     XL2 = DX*DX + DY*DY + DZ*DZ;
     XL = sqrt(XL2);
     
 %   TRANSFORMATION MATRIX
     LAMBDA(:,1) = D / XL;  
-    LAMBDA(1,2) = N1;
-    LAMBDA(2,2) = N2;
-    LAMBDA(3,2) = N3;
+    LAMBDA(1,2) = N1(N);
+    LAMBDA(2,2) = N2(N);
+    LAMBDA(3,2) = N3(N);
 
     LAMBDA(:,3) = CROSS_PRODUCT(LAMBDA(:,1),LAMBDA(:,2));
     LAMBDA(:,3) = LAMBDA(:,3)/sqrt(sum(LAMBDA(:,3).*LAMBDA(:,3)));
@@ -141,9 +147,9 @@ for N = 1:NUME
     end
     
 %   SRC/Mechanics/ADDBAN.m
-    ADDBAN(KGLOBAL, LM(:, N));
+    ADDBAN_K(KGLOBAL, N);
 %   SRC/Mechanics/ADDBAN_M.m
-    ADDBAN_M(MGLOBAL, LM(:, N));
+    ADDBAN_M(MGLOBAL, N);
     
 end
 

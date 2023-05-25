@@ -1,0 +1,16 @@
+function APPBC()
+
+global sdata;
+global cdata;
+
+BC = sdata.BC; NDOF = sdata.NDOF;
+STIFF = sdata.STIFF; R = sdata.R;
+NUMNP = cdata.NUMNP;
+
+for N = 1:NUMNP
+    for dof = 1:NDOF
+        if (BC(dof,N) == 1)
+           STIFF()
+        end
+    end
+end

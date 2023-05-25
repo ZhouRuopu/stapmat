@@ -1,0 +1,116 @@
+%* *****************************************************************
+%* - Function of STAPMAT in Solver phase                           *
+%*                                                                 *
+%* - Purpose:                                                      *
+%*     Perform Gene_Alpha_Integ_Linear                             *
+%*     combined algorithm using priori and posteriori estimators   *
+%* - Call procedures: None                                         *
+%*                                                                 *
+%* - Called by :                                                   *
+%*     ./Solve.m                                                   *
+%*                                                                 *
+%*                                                                 *
+%* - Programmed by:                                                *
+%*     Yang Mo                                                     *
+%*     Institute of Systems Engineering                            *
+%*     China Academy of Engineering Physic, 2023.05.15             *
+%*                                                                 *
+%* *****************************************************************
+function[Time,u,v,A]=Gene_Alpha_Integ_Linear(M,K,C,Q,a0,Da0,rho,intimestep,time_limit,err,Gamma1,Gamma2,Gamma3)
+% M: 质量阵
+% K: 系统刚度阵
+% C: 阻尼阵
+% Q: 载荷向量(含变量t)
+% a0: 初始位移
+% Da0: 初始速度
+% rho: 期望的高阶耗散
+% inimestep: 初始时间步长
+% time_limit: 求解时间长度
+% err: 误差容许参数
+% Gamma1：先验估计法参数
+% Gamma2: 先验估计法参数
+% Gamma3: 先验估计法参数
+t=0;
+n=size(M,1);
+af=rho/(rho+1);                     %广义alpha法计算参数
+am=(2*rho-1)/(rho+1);               %广义alpha法计算参数
+Beta=(1/4)*((1-am+af)^2);           %广义alpha法计算参数
+Gamma=(1/2)-am+af;                  %广义alpha法计算参数
+% DDa0=LDLT_FOR_G(M,Q-K*a0-C*Da0);    %用LDLT分解求解线性方程组M*DDa0=Q0-K*a0-C*Da0从而求解出t0=0时刻的加速度DDa0
+DDa0=M\(Q-K*a0-C*Da0);
+
+%%%%%%%%%%%%%%%%%%%%%用不含误差估计的广义alpha求解t1时刻的a1、Da1和DDa1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Q_bar=zeros(n,1);
+ck=1-af;c0=(1-am)/(Beta*(intimestep^2));c1=(ck*Gamma)/(Beta*intimestep);c2=intimestep*c0;                       %计算积分常数
+c3=(c2*intimestep)/2-1;c4=ck*Gamma/Beta-1;c5=ck*intimestep*(Gamma/(2*Beta)-1);                                  %计算积分常数
+c6=c0/(1-am);c7=c1/(ck*Gamma);c8=1/(2*Beta)-1;c9=c1/ck;c10=1-Gamma/Beta;c11=(1-Gamma/(2*Beta))*intimestep;      %计算积分常数
+K_bar=ck*K+c0*M+c1*C;                                                                                           %计算有效刚度矩阵
+t=t+intimestep;                                                                                                 %t1时刻
+Q_bar=subs(Q,t,t-af*intimestep)-af*K*a0+M*(c0*a0+c2*Da0+c3*DDa0)+C*(c1*a0+c4*Da0+c5*DDa0);
+a1=LDLT_FOR_G(K_bar,Q_bar);                                                                                     %用LDLT分解求解线性方程组K_bar*a1=Q_bar计算t1时刻的位移a1
+DDa1=c6*(a1-a0)-c7*Da0-c8*DDa0;                                                                                 %计算t1时刻的加速度DDa1
+Da1=c9*(a1-a0)+c10*Da0+c11*DDa0;                                                                                %计算t1时刻的速度Da1
+fprintf('time = %3.2f, ');
+%%%%%%%%%%%%%%%%%%%%%用不含误差估计的广义alpha求解t1时刻的a1、Da1和DDa1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Gene_Alpha_Integ_Linear主体%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+i=1;
+Time(1,1)=0; Time(2,1)=intimestep;                %Time为存储时间步的列向量 
+u(1:n,1)=a0; u(1:n,2)=a1;                         %u为储存各时刻位移向量的矩阵
+v(1:n,1)=Da0; v(1:n,2)=Da1;                       %v为储存各时刻速度向量的矩阵
+A(1:n,1)=DDa0; A(1:n,2)=DDa1;                     %A为储存各时刻加速度向量的矩阵
+um(1,1)=norm(u(1:n,1)); um(2,1)=norm(u(1:n,2));   %um为存储各个时刻位移向量的二范数的大小的列向量
+c12=3-rho^2; c13=(((2-rho)^2)*((1+rho)^2)); c14=3*((c12/c13)-2/3); c15=((1/c13)-(1/6));
+timestep=intimestep;
+while Time(i,1)<=time_limit
+      epr=c14*(timestep^2)*(A(1:n,i+1)-A(1:n,i));
+      dmax=max(um);
+      npr=norm(epr)/dmax;
+       if(npr<=(err*Gamma3))
+          timestep=timestep*((err/npr)^(1/3));
+          ck=1-af;c0=(1-am)/(Beta*(timestep^2));c1=(ck*Gamma)/(Beta*timestep);c2=timestep*c0;                             %计算第i步积分常数
+          c3=(c2*timestep)/2-1;c4=ck*Gamma/Beta-1;c5=ck*timestep*(Gamma/(2*Beta)-1);                                      %计算第i步积分常数
+          c6=c0/(1-am);c7=c1/(ck*Gamma);c8=1/(2*Beta)-1;c9=c1/ck;c10=1-Gamma/Beta;c11=(1-Gamma/(2*Beta))*timestep;        %计算第i步积分常数
+          K_bar=ck*K+c0*M+c1*C;                                                                                           %计算有效刚度矩阵
+          Q_bar=subs(Q,t,t+(1-af)*timestep)-af*K*u(1:n,i+1)+M*(c0*u(1:n,i+1)+c2*v(1:n,i+1)+c3*A(1:n,i+1))+C*(c1*u(1:n,i+1)+c4*v(1:n,i+1)+c5*A(1:n,i+1));
+          u(1:n,i+2)=LDLT_FOR_G(K_bar,Q_bar);                                                                              %用LDLT分解求解线性方程组K_bar*a_i+1=Q_bar计算t_i+1时刻的位移a_i+1
+          A(1:n,i+2)=c6*(u(1:n,i+2)-u(1:n,i+1))-c7*v(1:n,i+1)-c8*A(1:n,i+1);                                               %计算t_i+1时刻的加速度DDa_i+1
+          v(1:n,i+2)=c9*(u(1:n,i+2)-u(1:n,i+1))+c10*v(1:n,i+1)+c11*A(1:n,i+1);                                             %计算t_i+1时刻的速度Da_i+1
+          Time(i+2,1)=Time(i+1,1)+timestep;
+          um(i+2,1)=norm(u(1:n,i+2));
+          t=t+timestep;
+          i=i+1;
+       else
+           K_bar=ck*K+c0*M+c1*C;
+           t=t+timestep;                                                                                                    %t_i+1时刻
+           Q_bar=subs(Q,t,t+(1-af)*timestep)-af*K*u(1:n,i+1)+M*(c0*u(1:n,i+1)+c2*v(1:n,i+1)+c3*A(1:n,i+1))+C*(c1*u(1:n,i+1)+c4*v(1:n,i+1)+c5*A(1:n,i+1));
+           u(1:n,i+2)=LDLT_FOR_G(K_bar,Q_bar);                                                                              %用LDLT分解求解线性方程组K_bar*a_i+1=Q_bar计算t_i+1时刻的位移a_i+1
+           A(1:n,i+2)=c6*(u(1:n,i+2)-u(1:n,i+1))-c7*v(1:n,i+1)-c8*A(1:n,i+1);                                               %计算t_i+1时刻的加速度DDa_i+1                                             
+           eps=c15*(timestep^2)*(A(1:n,i+2)-A(1:n,i+1));
+           um(i+2,1)=norm(u(1:n,i+2));
+           dmax=max(um);
+           nps=norm(eps)/dmax;
+           while(nps>err*Gamma2 || nps<err*Gamma1)
+             timestep=timestep*((err/nps)^(1/3));
+             ck=1-af;c0=(1-am)/(Beta*(timestep^2));c1=(ck*Gamma)/(Beta*timestep);c2=timestep*c0;                             %计算积分常数
+             c3=(c2*timestep)/2-1;c4=ck*Gamma/Beta-1;c5=ck*timestep*(Gamma/(2*Beta)-1);                                      %计算积分常数
+             c6=c0/(1-am);c7=c1/(ck*Gamma);c8=1/(2*Beta)-1;c9=c1/ck;c10=1-Gamma/Beta;c11=(1-Gamma/(2*Beta))*timestep;        %计算积分常数
+             K_bar=ck*K+c0*M+c1*C;
+             Q_bar=subs(Q,t,t+(1-af)*timestep)-af*K*u(1:n,i+1)+M*(c0*u(1:n,i+1)+c2*v(1:n,i+1)+c3*A(1:n,i+1))+C*(c1*u(1:n,i+1)+c4*v(1:n,i+1)+c5*A(1:n,i+1));
+             u(1:n,i+2)=LDLT_FOR_G(K_bar,Q_bar);                                                                              %用LDLT分解求解线性方程组K_bar*a_i+1=Q_bar计算t_i+1时刻的位移a_i+1
+             A(1:n,i+2)=c6*(u(1:n,i+2)-u(1:n,i+1))-c7*v(1:n,i+1)-c8*A(1:n,i+1);                                               %计算t_i+1时刻的加速度DDa_i+1                                             
+             eps=c15*(timestep^2)*(A(1:n,i+2)-A(1:n,i+1));
+             um(i+2,1)=norm(u(1:n,i+2));
+             dmax=max(um);
+             nps=norm(eps)/dmax;
+          end
+             v(1:n,i+2)=c9*(u(1:n,i+2)-u(1:n,i+1))+c10*v(1:n,i+1)+c11*A(1:n,i+1);                                             %计算t_i+1时刻的速度Da_i+1
+             Time(i+2,1)=Time(i+1,1)+timestep;
+             um(i+2,1)=norm(u(1:n,i+2));
+             i=i+1;
+       end
+end
+     
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Gene_Alpha_Integ_Linear主体%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

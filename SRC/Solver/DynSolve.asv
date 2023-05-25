@@ -1,5 +1,5 @@
 %* *****************************************************************
-%* - Function of STAPMAT in Dynamic Solver phase                           *
+%* - Function of STAPMAT in Dynamic Solver phase                   *
 %*                                                                 *
 %* - Purpose:                                                      *
 %*     To solve finite element static equilibrium equations        *
@@ -25,21 +25,34 @@ global sdata;
 NEQ = sdata.NEQ;
 NLCASE = cdata.NLCASE;
 LINEAR = cdata.LINEAR;
-ENDT = cdata.ENDT;
-TSTEP = cdata.TSTEP;
 
 M = sdata.MASS;
 K = sdata.STIFF;
 Q = sdata.R;
-C = zeros('like',K);
+c1 = 0; c2 = 0;
+C = c1.*M + c2.*K;
 
-sdata.DIS = zeros(NEQ, NLCASE, 'double');
+a0 = sdata.INITX;
+Da0 = sdata.INITV;
+a0 = zeros(length(K),1);
+Da0 = zeros(length(K),1);
+
+rho = sdata.SPRHO;
+intimestep = sdata.TSTEP;
+time_limit = sdata.CTIME;
+err = sdata.ERR;
+Gamma1 = sdata.GAMMA1;
+Gamma2 = sdata.GAMMA2;
+Gamma3 = sdata.GAMMA3;
+
+NUMNP = cdata.NUMNP; NDOF = sdata.NDOF;
+sdata.DIS = zeros(NUMNP*NDOF, NLCASE, 'double');
 sdata.STRAIN = zeros(NEQ, NLCASE, 'double');
 sdata.STRESS = zeros(NEQ, NLCASE, 'double');
 
 cdata.TIM(4,:) = clock;
 
-
+LINEAR = 1;
 % Solve Dynamic Problem
 if(LINEAR)     % Linear Problem
     fprintf("LINEAR Dynamic Solve is Run!");
@@ -49,7 +62,7 @@ if(LINEAR)     % Linear Problem
 
 
         % 可视化输出
-        View_Output();
+
 
 else           % non-Linear Problem
 

@@ -19,8 +19,10 @@
 function WriteParasOut()
 global cdata;
 global sdata;
+global fpath;
 % Open file
-cdata.IOUT = fopen('.\Data\STAPMAT.OUT', 'w');
+outfile = strcat(fpath,'STAPMAT.OUT');
+cdata.IOUT = fopen(outfile, 'w');
 IOUT = cdata.IOUT;
 
 fprintf(IOUT, ['\n %s \n\n'...

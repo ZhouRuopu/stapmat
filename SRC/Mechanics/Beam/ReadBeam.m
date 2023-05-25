@@ -57,7 +57,7 @@ sdata.NUME = cdata.NPAR(2);
 sdata.NUMMAT = cdata.NPAR(3);
 NUMMAT = cdata.NPAR(3);
 sdata.E = zeros(NUMMAT, 1, 'double');
-sdata.G = zeros(NUMMAT, 1, 'double');
+sdata.nu = zeros(NUMMAT, 1, 'double');
 sdata.AREA = zeros(NUMMAT, 1, 'double');
 sdata.RHO = zeros(NUMMAT, 1, 'double');
 sdata.IY = zeros(NUMMAT, 1, 'double');
@@ -67,7 +67,7 @@ for I = 1:NUMMAT
     tmp = str2num(fgetl(IIN));
     N = round(tmp(1));
     sdata.E(N) = tmp(2);
-    sdata.G(N) = tmp(3);
+    sdata.nu(N) = tmp(3);
     sdata.RHO(N) = tmp(4);
     sdata.AREA(N) = tmp(5);
     sdata.IY(N) = tmp(6);
@@ -76,6 +76,8 @@ for I = 1:NUMMAT
     fprintf(IOUT, '%5d    %12.5e    %12.5e  %14.6e  %14.6e    %12.5e    %12.5e    %12.5e\n', ...
                     N, tmp(2), tmp(3), tmp(4), tmp(5), tmp(6), tmp(7), tmp(8));
 end
+
+sdata.G = sdata.E/(2*(1+sdata.nu));
 
 end
 
@@ -140,6 +142,7 @@ for N = 1:NUME
 end
 sdata.XYZ = XYZ; sdata.MATP = MATP; sdata.LM = LM;
 sdata.N1 = N1; sdata.N2 = N2; sdata.N3 = N3;
+sdata.IJ = IJ;
 
 % Clear the memory of X, Y, Z
 sdata.X = double(0);

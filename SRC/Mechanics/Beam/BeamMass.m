@@ -1,7 +1,8 @@
 function MLOCAL = BeamMass(XL)
    global sdata;
    MLOCAL = zeros(12, 12, 'double');
-   AREA = sdata.AREA; RHO = sdata.RHO; IY = sdata.IY; IZ = sdata.IZ;
+   NUME = sdata.NUME; MATP = sdata.MATP;
+   AREA = sdata.AREA; RHO = sdata.RHO; IY = sdata.IY; IZ = sdata.IZ; JP = sdata.IJ;
 
    for N = 1:NUME
     MTYPE = MATP(N);

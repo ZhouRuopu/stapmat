@@ -1,0 +1,8 @@
+function ADDBAN_K(K, N)
+
+global sdata;
+global cdata;
+
+STIFF = sdata.STIFF;
+IJ = sdata.IJ;
+II = IJ(N, 1);

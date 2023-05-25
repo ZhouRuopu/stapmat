@@ -1,0 +1,21 @@
+function ADDBAN_M(M, LM)
+
+global sdata;
+global cdata;
+
+MASS = sdata.MASS; IJ = sdata.IJ;
+I = IJ(N, 1); J = IJ(N, 2); 
+
+% 行和法化为集中质量阵
+M_l = zeros(12,12);
+for m = 1:12
+    M_l(m,m) = sum(M(1,:));
+end
+
+for i = 1:12
+    for j = 1:12
+        MASS(12*I-12+i,12*J-12+j) = MASS(12*I-12+i,12*J-12+j) + K(i,j);
+    end
+end
+
+sdata.MASS = MASS;

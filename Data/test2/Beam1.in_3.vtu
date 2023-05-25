@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<VTKFile type="UnstructuredGrid" version="0.1" byte_order="BigEndian">
+<UnstructuredGrid>
+   <Piece NumberOfPoints="5" NumberOfCells="4">
+      <Points>
+         <DataArray type="Float32" NumberOfComponents="3" Format="ascii">
+         0.00000   -0.00000   0.00000
+         0.25000   -0.09945   0.00000
+         0.50000   -0.35564   0.00000
+         0.75000   -0.71241   0.00000
+         1.00000   -1.11891   0.00000
+         </DataArray>
+      </Points>
+      <PointData Scalars="Scalars">
+          <DataArray type="Float32" Name="Disp" Format="ascii">
+         0.00000
+         0.09945
+         0.35564
+         0.71241
+         1.11891
+          </DataArray>
+          <DataArray type="Float32" Name="MStress" Format="ascii">
+         0.00000
+         322720.78537
+         4336517.51126
+         19815542.72387
+         41511583.84709
+          </DataArray>
+      </PointData>
+      <Cells>
+         <DataArray type="Float32" Name="connectivity" Format="ascii">
+         0.00000   1.00000
+         1.00000   2.00000
+         2.00000   3.00000
+         3.00000   4.00000
+         </DataArray>
+         <DataArray type="Float32" Name="offsets" Format="ascii">
+         2
+         4
+         6
+         8
+         </DataArray>
+         <DataArray type="Float32" Name="types" Format="ascii">
+         3
+         3
+         3
+         3
+         </DataArray>
+      </Cells>
+   </Piece>
+</UnstructuredGrid>
+</VTKFile>

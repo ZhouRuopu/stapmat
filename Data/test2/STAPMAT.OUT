@@ -1,0 +1,956 @@
+
+ a test to STAPMAT    
+
+ C O N T R O L   I N F O R M A T I O N
+
+      NUMBER OF NODAL POINTS . . . . . . . . . . (NUMNP)  =          5 
+      NUMBER OF ELEMENT GROUPS . . . . . . . . . (NUMEG)  =          1 
+      NUMBER OF LOAD CASES . . . . . . . . . . . (NLCASE) =          1 
+      SOLUTION MODE  . . . . . . . . . . . . . . (MODEX)  =          1 
+         EQ.0, DATA CHECK 
+         EQ.1, EXECUTION
+
+
+ N O D A L   P O I N T   D A T A 
+
+       NODE          BOUNDARY                         NODAL POINT
+      NUMBER     CONDITION  CODES                     COORDINATES
+                    X    Y    Z               X            Y            Z
+         1          1    1    1              0.000        0.000        0.000
+         2          0    0    0              0.250        0.000        0.000
+         3          0    0    0              0.500        0.000        0.000
+         4          0    0    0              0.750        0.000        0.000
+         5          0    0    0              1.000        0.000        0.000
+
+
+ EQUATION NUMBERS
+
+        NODE         DEGREES OF FREEDOM
+       NUMBER
+          N                  X         Y         Z
+          1                  0         0         0
+          2                  1         2         3
+          3                  4         5         6
+          4                  7         8         9
+          5                 10        11        12
+
+
+ L O A D   C A S E   D A T A
+
+     LOAD CASE NUMBER . . . . . . . =          1
+     NUMBER OF CONCENTRATED LOADS . =          1
+
+
+        NODE       DIRECTION      LOAD
+       NUMBER                   MAGNITUDE
+         5            2       -1.00000e+02
+
+ E L E M E N T   G R O U P   D A T A
+
+
+ E L E M E N T   D E F I N I T I O N
+
+ ELEMENT TYPE  . . . . . . . . . . . . .( NPAR(1) ) . . =          2
+     EQ.1, TRUSS ELEMENTS
+     EQ.2, ELEMENTS CURRENTLY
+     EQ.3, NOT AVAILABLE
+ NUMBER OF ELEMENTS. . . . . . . . . . .( NPAR(2) ) . . =          4
+
+ M A T E R I A L   D E F I N I T I O N
+
+ NUMBER OF DIFFERENT SETS OF MATERIAL
+ AND CROSS-SECTIONAL  CONSTANTS  . . . .( NPAR(3) ) . . =          1
+  SET       YOUNG'S     CROSS-SECTIONAL
+ NUMBER     MODULUS          AREA
+               E              A
+    1     2.00000e+05     3.00000e-01    1.200000e-04    1.000000e-03     1.00000e+00     1.00000e+00     1.00000e+00
+
+
+ E L E M E N T   I N F O R M A T I O N
+
+      ELEMENT          NODE          NODE       MATERIAL
+      NUMBER-N           I             J       SET NUMBER
+         1               1             2           1
+         2               2             3           1
+         3               3             4           1
+         4               4             5           1
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    0.00000e+00      0.00000e+00      0.00000e+00            0.00000e+00      0.00000e+00      0.00000e+00 
+          2 :    0.00000e+00      0.00000e+00      0.00000e+00            0.00000e+00      0.00000e+00      0.00000e+00 
+          3 :    0.00000e+00      0.00000e+00      0.00000e+00            0.00000e+00      0.00000e+00      0.00000e+00 
+          4 :    0.00000e+00      0.00000e+00      0.00000e+00            0.00000e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    7.84000e-26      0.00000e+00      0.00000e+00            2.29973e-08      0.00000e+00      0.00000e+00 
+          2 :    1.37984e-07      0.00000e+00      0.00000e+00            5.22667e-07      0.00000e+00      0.00000e+00 
+          3 :    1.69344e-06      0.00000e+00      0.00000e+00            3.47155e-06      0.00000e+00      0.00000e+00 
+          4 :    6.85843e-06      0.00000e+00      0.00000e+00            1.09049e-05      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.45956e-18      0.00000e+00      0.00000e+00            3.55111e-01      0.00000e+00      0.00000e+00 
+          2 :    2.04224e+00      0.00000e+00      0.00000e+00            7.71982e+00      0.00000e+00      0.00000e+00 
+          3 :    2.44943e+01      0.00000e+00      0.00000e+00            4.99182e+01      0.00000e+00      0.00000e+00 
+          4 :    9.72830e+01      0.00000e+00      0.00000e+00            1.54186e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -2.43307e-18      0.00000e+00      0.00000e+00           -2.10565e-03      0.00000e+00      0.00000e+00 
+          2 :    8.07640e-03      0.00000e+00      0.00000e+00            1.75604e-02      0.00000e+00      0.00000e+00 
+          3 :    7.31940e-01      0.00000e+00      0.00000e+00            1.70476e+00      0.00000e+00      0.00000e+00 
+          4 :    5.75923e+00      0.00000e+00      0.00000e+00            9.59388e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -7.07290e-18      0.00000e+00      0.00000e+00            2.56502e-03      0.00000e+00      0.00000e+00 
+          2 :   -4.24465e-03      0.00000e+00      0.00000e+00           -7.38035e-02      0.00000e+00      0.00000e+00 
+          3 :    3.07254e-01      0.00000e+00      0.00000e+00            2.98594e-01      0.00000e+00      0.00000e+00 
+          4 :    1.51631e+00      0.00000e+00      0.00000e+00            1.44536e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -4.34432e-18      0.00000e+00      0.00000e+00            1.92243e-01      0.00000e+00      0.00000e+00 
+          2 :    5.09628e-01      0.00000e+00      0.00000e+00            2.81997e+00      0.00000e+00      0.00000e+00 
+          3 :    6.30785e+00      0.00000e+00      0.00000e+00            1.64645e+01      0.00000e+00      0.00000e+00 
+          4 :    2.94816e+01      0.00000e+00      0.00000e+00            5.54640e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -2.07548e-18      0.00000e+00      0.00000e+00            4.51118e-02      0.00000e+00      0.00000e+00 
+          2 :    5.63905e-01      0.00000e+00      0.00000e+00            1.78229e+00      0.00000e+00      0.00000e+00 
+          3 :    8.07017e+00      0.00000e+00      0.00000e+00            1.51113e+01      0.00000e+00      0.00000e+00 
+          4 :    3.69110e+01      0.00000e+00      0.00000e+00            5.21995e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -8.35909e-18      0.00000e+00      0.00000e+00            1.28782e-02      0.00000e+00      0.00000e+00 
+          2 :    5.89515e-01      0.00000e+00      0.00000e+00            2.34662e+00      0.00000e+00      0.00000e+00 
+          3 :    1.04327e+01      0.00000e+00      0.00000e+00            2.57185e+01      0.00000e+00      0.00000e+00 
+          4 :    5.45195e+01      0.00000e+00      0.00000e+00            1.07042e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -2.87064e-18      0.00000e+00      0.00000e+00            6.44060e-01      0.00000e+00      0.00000e+00 
+          2 :    2.32976e+00      0.00000e+00      0.00000e+00            9.18857e+00      0.00000e+00      0.00000e+00 
+          3 :    2.44876e+01      0.00000e+00      0.00000e+00            4.85049e+01      0.00000e+00      0.00000e+00 
+          4 :    9.46566e+01      0.00000e+00      0.00000e+00            1.36900e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -9.05976e-18      0.00000e+00      0.00000e+00            8.21886e-02      0.00000e+00      0.00000e+00 
+          2 :    1.30147e+00      0.00000e+00      0.00000e+00            4.45456e+00      0.00000e+00      0.00000e+00 
+          3 :    1.86459e+01      0.00000e+00      0.00000e+00            3.89936e+01      0.00000e+00      0.00000e+00 
+          4 :    8.11254e+01      0.00000e+00      0.00000e+00            1.41239e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.93304e-19      0.00000e+00      0.00000e+00            2.69565e-01      0.00000e+00      0.00000e+00 
+          2 :    1.74410e+00      0.00000e+00      0.00000e+00            6.91311e+00      0.00000e+00      0.00000e+00 
+          3 :    2.29315e+01      0.00000e+00      0.00000e+00            4.68373e+01      0.00000e+00      0.00000e+00 
+          4 :    9.40615e+01      0.00000e+00      0.00000e+00            1.39316e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.32432e-18      0.00000e+00      0.00000e+00            2.89434e-01      0.00000e+00      0.00000e+00 
+          2 :    1.41755e+00      0.00000e+00      0.00000e+00            5.22011e+00      0.00000e+00      0.00000e+00 
+          3 :    1.57020e+01      0.00000e+00      0.00000e+00            3.08711e+01      0.00000e+00      0.00000e+00 
+          4 :    5.88059e+01      0.00000e+00      0.00000e+00            9.31283e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -2.92145e-18      0.00000e+00      0.00000e+00           -5.77660e-03      0.00000e+00      0.00000e+00 
+          2 :    5.64603e-02      0.00000e+00      0.00000e+00            1.90732e-01      0.00000e+00      0.00000e+00 
+          3 :    1.22137e+00      0.00000e+00      0.00000e+00            2.83644e+00      0.00000e+00      0.00000e+00 
+          4 :    6.70448e+00      0.00000e+00      0.00000e+00            1.11931e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -2.18313e-18      0.00000e+00      0.00000e+00            4.33631e-03      0.00000e+00      0.00000e+00 
+          2 :    1.56157e-01      0.00000e+00      0.00000e+00            5.26868e-01      0.00000e+00      0.00000e+00 
+          3 :    2.25749e+00      0.00000e+00      0.00000e+00            4.41481e+00      0.00000e+00      0.00000e+00 
+          4 :    8.77137e+00      0.00000e+00      0.00000e+00            1.27213e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.19436e-18      0.00000e+00      0.00000e+00            2.40860e-01      0.00000e+00      0.00000e+00 
+          2 :    1.31613e+00      0.00000e+00      0.00000e+00            4.96394e+00      0.00000e+00      0.00000e+00 
+          3 :    1.57907e+01      0.00000e+00      0.00000e+00            3.25011e+01      0.00000e+00      0.00000e+00 
+          4 :    6.52064e+01      0.00000e+00      0.00000e+00            1.05808e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -6.47167e-19      0.00000e+00      0.00000e+00            1.43359e-01      0.00000e+00      0.00000e+00 
+          2 :    1.09269e+00      0.00000e+00      0.00000e+00            4.39483e+00      0.00000e+00      0.00000e+00 
+          3 :    1.58339e+01      0.00000e+00      0.00000e+00            3.47138e+01      0.00000e+00      0.00000e+00 
+          4 :    7.38966e+01      0.00000e+00      0.00000e+00            1.21785e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.10662e-20      0.00000e+00      0.00000e+00            2.30615e-02      0.00000e+00      0.00000e+00 
+          2 :    1.31257e-01      0.00000e+00      0.00000e+00            4.50545e-01      0.00000e+00      0.00000e+00 
+          3 :    1.39254e+00      0.00000e+00      0.00000e+00            2.52169e+00      0.00000e+00      0.00000e+00 
+          4 :    4.59245e+00      0.00000e+00      0.00000e+00            6.58774e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.06951e-19      0.00000e+00      0.00000e+00            1.41468e-01      0.00000e+00      0.00000e+00 
+          2 :    9.51754e-01      0.00000e+00      0.00000e+00            3.66481e+00      0.00000e+00      0.00000e+00 
+          3 :    1.25827e+01      0.00000e+00      0.00000e+00            2.63392e+01      0.00000e+00      0.00000e+00 
+          4 :    5.41533e+01      0.00000e+00      0.00000e+00            8.69014e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.46427e-19      0.00000e+00      0.00000e+00            2.12725e-01      0.00000e+00      0.00000e+00 
+          2 :    1.33477e+00      0.00000e+00      0.00000e+00            4.93774e+00      0.00000e+00      0.00000e+00 
+          3 :    1.61993e+01      0.00000e+00      0.00000e+00            3.26004e+01      0.00000e+00      0.00000e+00 
+          4 :    6.41688e+01      0.00000e+00      0.00000e+00            1.00689e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.28399e-19      0.00000e+00      0.00000e+00            4.07051e-02      0.00000e+00      0.00000e+00 
+          2 :    2.41608e-01      0.00000e+00      0.00000e+00            8.69731e-01      0.00000e+00      0.00000e+00 
+          3 :    2.75646e+00      0.00000e+00      0.00000e+00            5.35564e+00      0.00000e+00      0.00000e+00 
+          4 :    1.01764e+01      0.00000e+00      0.00000e+00            1.55413e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.40136e-20      0.00000e+00      0.00000e+00            1.98030e-01      0.00000e+00      0.00000e+00 
+          2 :    1.33824e+00      0.00000e+00      0.00000e+00            5.12112e+00      0.00000e+00      0.00000e+00 
+          3 :    1.75391e+01      0.00000e+00      0.00000e+00            3.66400e+01      0.00000e+00      0.00000e+00 
+          4 :    7.50213e+01      0.00000e+00      0.00000e+00            1.20645e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.36932e-21      0.00000e+00      0.00000e+00            2.10050e-03      0.00000e+00      0.00000e+00 
+          2 :    1.30613e-02      0.00000e+00      0.00000e+00            5.76126e-02      0.00000e+00      0.00000e+00 
+          3 :    2.02570e-01      0.00000e+00      0.00000e+00            4.80029e-01      0.00000e+00      0.00000e+00 
+          4 :    1.07505e+00      0.00000e+00      0.00000e+00            1.86508e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.42110e-19      0.00000e+00      0.00000e+00            1.65229e-01      0.00000e+00      0.00000e+00 
+          2 :    1.09102e+00      0.00000e+00      0.00000e+00            4.24752e+00      0.00000e+00      0.00000e+00 
+          3 :    1.45247e+01      0.00000e+00      0.00000e+00            3.08251e+01      0.00000e+00      0.00000e+00 
+          4 :    6.37433e+01      0.00000e+00      0.00000e+00            1.03538e+02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.72234e-20      0.00000e+00      0.00000e+00            2.72822e-02      0.00000e+00      0.00000e+00 
+          2 :    1.79185e-01      0.00000e+00      0.00000e+00            6.61948e-01      0.00000e+00      0.00000e+00 
+          3 :    2.21214e+00      0.00000e+00      0.00000e+00            4.46462e+00      0.00000e+00      0.00000e+00 
+          4 :    8.86313e+00      0.00000e+00      0.00000e+00            1.39508e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.49853e-19      0.00000e+00      0.00000e+00            1.50398e-01      0.00000e+00      0.00000e+00 
+          2 :    9.93051e-01      0.00000e+00      0.00000e+00            3.77213e+00      0.00000e+00      0.00000e+00 
+          3 :    1.27749e+01      0.00000e+00      0.00000e+00            2.65072e+01      0.00000e+00      0.00000e+00 
+          4 :    5.38354e+01      0.00000e+00      0.00000e+00            8.62713e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.54951e-21      0.00000e+00      0.00000e+00            4.99675e-03      0.00000e+00      0.00000e+00 
+          2 :    3.16805e-02      0.00000e+00      0.00000e+00            1.17590e-01      0.00000e+00      0.00000e+00 
+          3 :    3.87008e-01      0.00000e+00      0.00000e+00            7.72821e-01      0.00000e+00      0.00000e+00 
+          4 :    1.51629e+00      0.00000e+00      0.00000e+00            2.34478e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.54599e-19      0.00000e+00      0.00000e+00            1.20955e-01      0.00000e+00      0.00000e+00 
+          2 :    7.90553e-01      0.00000e+00      0.00000e+00            2.99194e+00      0.00000e+00      0.00000e+00 
+          3 :    1.00701e+01      0.00000e+00      0.00000e+00            2.07428e+01      0.00000e+00      0.00000e+00 
+          4 :    4.18460e+01      0.00000e+00      0.00000e+00            6.65814e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.01895e-21      0.00000e+00      0.00000e+00            1.09868e-03      0.00000e+00      0.00000e+00 
+          2 :    6.81304e-03      0.00000e+00      0.00000e+00            2.41688e-02      0.00000e+00      0.00000e+00 
+          3 :    7.74608e-02      0.00000e+00      0.00000e+00            1.47636e-01      0.00000e+00      0.00000e+00 
+          4 :    2.78281e-01      0.00000e+00      0.00000e+00            4.17503e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.73280e-20      0.00000e+00      0.00000e+00            8.53848e-02      0.00000e+00      0.00000e+00 
+          2 :    5.63925e-01      0.00000e+00      0.00000e+00            2.15904e+00      0.00000e+00      0.00000e+00 
+          3 :    7.33163e+00      0.00000e+00      0.00000e+00            1.53013e+01      0.00000e+00      0.00000e+00 
+          4 :    3.12221e+01      0.00000e+00      0.00000e+00            5.01474e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    5.33926e-21      0.00000e+00      0.00000e+00            4.21768e-03      0.00000e+00      0.00000e+00 
+          2 :    2.76224e-02      0.00000e+00      0.00000e+00            1.04916e-01      0.00000e+00      0.00000e+00 
+          3 :    3.53415e-01      0.00000e+00      0.00000e+00            7.27971e-01      0.00000e+00      0.00000e+00 
+          4 :    1.46846e+00      0.00000e+00      0.00000e+00            2.32891e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    7.34998e-20      0.00000e+00      0.00000e+00            6.60478e-02      0.00000e+00      0.00000e+00 
+          2 :    4.36607e-01      0.00000e+00      0.00000e+00            1.67152e+00      0.00000e+00      0.00000e+00 
+          3 :    5.68164e+00      0.00000e+00      0.00000e+00            1.18789e+01      0.00000e+00      0.00000e+00 
+          4 :    2.42779e+01      0.00000e+00      0.00000e+00            3.90971e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.97705e-21      0.00000e+00      0.00000e+00            6.77865e-03      0.00000e+00      0.00000e+00 
+          2 :    4.50952e-02      0.00000e+00      0.00000e+00            1.73834e-01      0.00000e+00      0.00000e+00 
+          3 :    5.94201e-01      0.00000e+00      0.00000e+00            1.25283e+00      0.00000e+00      0.00000e+00 
+          4 :    2.57936e+00      0.00000e+00      0.00000e+00            4.18112e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.30682e-20      0.00000e+00      0.00000e+00            5.30374e-02      0.00000e+00      0.00000e+00 
+          2 :    3.48754e-01      0.00000e+00      0.00000e+00            1.32816e+00      0.00000e+00      0.00000e+00 
+          3 :    4.49339e+00      0.00000e+00      0.00000e+00            9.32794e+00      0.00000e+00      0.00000e+00 
+          4 :    1.89453e+01      0.00000e+00      0.00000e+00            3.03275e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.39940e-20      0.00000e+00      0.00000e+00            1.19653e-02      0.00000e+00      0.00000e+00 
+          2 :    7.88405e-02      0.00000e+00      0.00000e+00            3.01022e-01      0.00000e+00      0.00000e+00 
+          3 :    1.02059e+00      0.00000e+00      0.00000e+00            2.12628e+00      0.00000e+00      0.00000e+00 
+          4 :    4.33194e+00      0.00000e+00      0.00000e+00            6.95629e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.33815e-20      0.00000e+00      0.00000e+00            3.70773e-02      0.00000e+00      0.00000e+00 
+          2 :    2.43929e-01      0.00000e+00      0.00000e+00            9.28820e-01      0.00000e+00      0.00000e+00 
+          3 :    3.14235e+00      0.00000e+00      0.00000e+00            6.51984e+00      0.00000e+00      0.00000e+00 
+          4 :    1.32371e+01      0.00000e+00      0.00000e+00            2.11748e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.31751e-20      0.00000e+00      0.00000e+00            1.96402e-02      0.00000e+00      0.00000e+00 
+          2 :    1.29114e-01      0.00000e+00      0.00000e+00            4.91245e-01      0.00000e+00      0.00000e+00 
+          3 :    1.66084e+00      0.00000e+00      0.00000e+00            3.44247e+00      0.00000e+00      0.00000e+00 
+          4 :    6.98290e+00      0.00000e+00      0.00000e+00            1.11611e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.28833e-20      0.00000e+00      0.00000e+00            1.98254e-02      0.00000e+00      0.00000e+00 
+          2 :    1.30743e-01      0.00000e+00      0.00000e+00            4.99551e-01      0.00000e+00      0.00000e+00 
+          3 :    1.69463e+00      0.00000e+00      0.00000e+00            3.53274e+00      0.00000e+00      0.00000e+00 
+          4 :    7.20142e+00      0.00000e+00      0.00000e+00            1.15673e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.12760e-20      0.00000e+00      0.00000e+00            2.69420e-02      0.00000e+00      0.00000e+00 
+          2 :    1.77509e-01      0.00000e+00      0.00000e+00            6.77336e-01      0.00000e+00      0.00000e+00 
+          3 :    2.29539e+00      0.00000e+00      0.00000e+00            4.77674e+00      0.00000e+00      0.00000e+00 
+          4 :    9.72275e+00      0.00000e+00      0.00000e+00            1.55942e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    5.03794e-21      0.00000e+00      0.00000e+00            4.42423e-03      0.00000e+00      0.00000e+00 
+          2 :    2.91944e-02      0.00000e+00      0.00000e+00            1.11575e-01      0.00000e+00      0.00000e+00 
+          3 :    3.78608e-01      0.00000e+00      0.00000e+00            7.89390e-01      0.00000e+00      0.00000e+00 
+          4 :    1.60945e+00      0.00000e+00      0.00000e+00            2.58512e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.55789e-20      0.00000e+00      0.00000e+00            2.21682e-02      0.00000e+00      0.00000e+00 
+          2 :    1.46145e-01      0.00000e+00      0.00000e+00            5.58064e-01      0.00000e+00      0.00000e+00 
+          3 :    1.89225e+00      0.00000e+00      0.00000e+00            3.94119e+00      0.00000e+00      0.00000e+00 
+          4 :    8.02799e+00      0.00000e+00      0.00000e+00            1.28844e+01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    5.33679e-21      0.00000e+00      0.00000e+00            4.67525e-03      0.00000e+00      0.00000e+00 
+          2 :    3.08475e-02      0.00000e+00      0.00000e+00            1.17888e-01      0.00000e+00      0.00000e+00 
+          3 :    4.00016e-01      0.00000e+00      0.00000e+00            8.34053e-01      0.00000e+00      0.00000e+00 
+          4 :    1.70054e+00      0.00000e+00      0.00000e+00            2.73169e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.85220e-21      0.00000e+00      0.00000e+00            5.86991e-03      0.00000e+00      0.00000e+00 
+          2 :    3.86431e-02      0.00000e+00      0.00000e+00            1.47293e-01      0.00000e+00      0.00000e+00 
+          3 :    4.98719e-01      0.00000e+00      0.00000e+00            1.03628e+00      0.00000e+00      0.00000e+00 
+          4 :    2.10656e+00      0.00000e+00      0.00000e+00            3.37423e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.41426e-20      0.00000e+00      0.00000e+00            1.21316e-02      0.00000e+00      0.00000e+00 
+          2 :    7.98998e-02      0.00000e+00      0.00000e+00            3.04762e-01      0.00000e+00      0.00000e+00 
+          3 :    1.03240e+00      0.00000e+00      0.00000e+00            2.14714e+00      0.00000e+00      0.00000e+00 
+          4 :    4.36801e+00      0.00000e+00      0.00000e+00            7.00179e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.16857e-22      0.00000e+00      0.00000e+00            1.03576e-04      0.00000e+00      0.00000e+00 
+          2 :    6.83712e-04      0.00000e+00      0.00000e+00            2.61299e-03      0.00000e+00      0.00000e+00 
+          3 :    8.86679e-03      0.00000e+00      0.00000e+00            1.84796e-02      0.00000e+00      0.00000e+00 
+          4 :    3.76681e-02      0.00000e+00      0.00000e+00            6.04658e-02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.39524e-21      0.00000e+00      0.00000e+00            3.78495e-03      0.00000e+00      0.00000e+00 
+          2 :    2.49281e-02      0.00000e+00      0.00000e+00            9.50589e-02      0.00000e+00      0.00000e+00 
+          3 :    3.21994e-01      0.00000e+00      0.00000e+00            6.69525e-01      0.00000e+00      0.00000e+00 
+          4 :    1.36184e+00      0.00000e+00      0.00000e+00            2.18274e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.66956e-21      0.00000e+00      0.00000e+00            5.71187e-03      0.00000e+00      0.00000e+00 
+          2 :    3.76123e-02      0.00000e+00      0.00000e+00            1.43436e-01      0.00000e+00      0.00000e+00 
+          3 :    4.85834e-01      0.00000e+00      0.00000e+00            1.01023e+00      0.00000e+00      0.00000e+00 
+          4 :    2.05482e+00      0.00000e+00      0.00000e+00            3.29351e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.05989e-22      0.00000e+00      0.00000e+00            3.50067e-04      0.00000e+00      0.00000e+00 
+          2 :    2.30472e-03      0.00000e+00      0.00000e+00            8.78177e-03      0.00000e+00      0.00000e+00 
+          3 :    2.97315e-02      0.00000e+00      0.00000e+00            6.17602e-02      0.00000e+00      0.00000e+00 
+          4 :    1.25522e-01      0.00000e+00      0.00000e+00            2.01023e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    8.86215e-22      0.00000e+00      0.00000e+00            7.71690e-04      0.00000e+00      0.00000e+00 
+          2 :    5.08736e-03      0.00000e+00      0.00000e+00            1.94196e-02      0.00000e+00      0.00000e+00 
+          3 :    6.58359e-02      0.00000e+00      0.00000e+00            1.37063e-01      0.00000e+00      0.00000e+00 
+          4 :    2.79097e-01      0.00000e+00      0.00000e+00            4.47761e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.60010e-21      0.00000e+00      0.00000e+00            2.23203e-03      0.00000e+00      0.00000e+00 
+          2 :    1.47035e-02      0.00000e+00      0.00000e+00            5.61028e-02      0.00000e+00      0.00000e+00 
+          3 :    1.90102e-01      0.00000e+00      0.00000e+00            3.95555e-01      0.00000e+00      0.00000e+00 
+          4 :    8.05018e-01      0.00000e+00      0.00000e+00            1.29097e+00      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.16640e-21      0.00000e+00      0.00000e+00            1.01109e-03      0.00000e+00      0.00000e+00 
+          2 :    6.66265e-03      0.00000e+00      0.00000e+00            2.54201e-02      0.00000e+00      0.00000e+00 
+          3 :    8.61442e-02      0.00000e+00      0.00000e+00            1.79232e-01      0.00000e+00      0.00000e+00 
+          4 :    3.64769e-01      0.00000e+00      0.00000e+00            5.84927e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.96951e-24      0.00000e+00      0.00000e+00            3.87327e-06      0.00000e+00      0.00000e+00 
+          2 :    2.53987e-05      0.00000e+00      0.00000e+00            9.67854e-05      0.00000e+00      0.00000e+00 
+          3 :    3.27145e-04      0.00000e+00      0.00000e+00            6.79590e-04      0.00000e+00      0.00000e+00 
+          4 :    1.38021e-03      0.00000e+00      0.00000e+00            2.21105e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.71348e-22      0.00000e+00      0.00000e+00            1.45309e-04      0.00000e+00      0.00000e+00 
+          2 :    9.56777e-04      0.00000e+00      0.00000e+00            3.65070e-03      0.00000e+00      0.00000e+00 
+          3 :    1.23676e-02      0.00000e+00      0.00000e+00            2.57325e-02      0.00000e+00      0.00000e+00 
+          4 :    5.23628e-02      0.00000e+00      0.00000e+00            8.39678e-02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.81833e-22      0.00000e+00      0.00000e+00            3.32653e-04      0.00000e+00      0.00000e+00 
+          2 :    2.19256e-03      0.00000e+00      0.00000e+00            8.36605e-03      0.00000e+00      0.00000e+00 
+          3 :    2.83547e-02      0.00000e+00      0.00000e+00            5.90006e-02      0.00000e+00      0.00000e+00 
+          4 :    1.20090e-01      0.00000e+00      0.00000e+00            1.92581e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.15182e-22      0.00000e+00      0.00000e+00            2.68319e-04      0.00000e+00      0.00000e+00 
+          2 :    1.76692e-03      0.00000e+00      0.00000e+00            6.74144e-03      0.00000e+00      0.00000e+00 
+          3 :    2.28388e-02      0.00000e+00      0.00000e+00            4.75164e-02      0.00000e+00      0.00000e+00 
+          4 :    9.66885e-02      0.00000e+00      0.00000e+00            1.55041e-01      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.74325e-23      0.00000e+00      0.00000e+00            8.58193e-05      0.00000e+00      0.00000e+00 
+          2 :    5.65892e-04      0.00000e+00      0.00000e+00            2.15936e-03      0.00000e+00      0.00000e+00 
+          3 :    7.32016e-03      0.00000e+00      0.00000e+00            1.52332e-02      0.00000e+00      0.00000e+00 
+          4 :    3.10104e-02      0.00000e+00      0.00000e+00            4.97325e-02      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.23699e-23      0.00000e+00      0.00000e+00            1.00426e-05      0.00000e+00      0.00000e+00 
+          2 :    6.60098e-05      0.00000e+00      0.00000e+00            2.51857e-04      0.00000e+00      0.00000e+00 
+          3 :    8.52578e-04      0.00000e+00      0.00000e+00            1.77364e-03      0.00000e+00      0.00000e+00 
+          4 :    3.60760e-03      0.00000e+00      0.00000e+00            5.78481e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.32101e-26      0.00000e+00      0.00000e+00            1.07100e-08      0.00000e+00      0.00000e+00 
+          2 :    6.50916e-08      0.00000e+00      0.00000e+00            2.45542e-07      0.00000e+00      0.00000e+00 
+          3 :    7.98824e-07      0.00000e+00      0.00000e+00            1.63090e-06      0.00000e+00      0.00000e+00 
+          4 :    3.22067e-06      0.00000e+00      0.00000e+00            5.10110e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.39431e-24      0.00000e+00      0.00000e+00            2.36701e-06      0.00000e+00      0.00000e+00 
+          2 :    1.56697e-05      0.00000e+00      0.00000e+00            5.97912e-05      0.00000e+00      0.00000e+00 
+          3 :    2.03030e-04      0.00000e+00      0.00000e+00            4.22590e-04      0.00000e+00      0.00000e+00 
+          4 :    8.61034e-04      0.00000e+00      0.00000e+00            1.38091e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.39113e-24      0.00000e+00      0.00000e+00            5.05626e-06      0.00000e+00      0.00000e+00 
+          2 :    3.31920e-05      0.00000e+00      0.00000e+00            1.26589e-04      0.00000e+00      0.00000e+00 
+          3 :    4.28210e-04      0.00000e+00      0.00000e+00            8.90310e-04      0.00000e+00      0.00000e+00 
+          4 :    1.80970e-03      0.00000e+00      0.00000e+00            2.90067e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    4.01340e-24      0.00000e+00      0.00000e+00            3.84754e-06      0.00000e+00      0.00000e+00 
+          2 :    2.54465e-05      0.00000e+00      0.00000e+00            9.71046e-05      0.00000e+00      0.00000e+00 
+          3 :    3.29610e-04      0.00000e+00      0.00000e+00            6.86082e-04      0.00000e+00      0.00000e+00 
+          4 :    1.39769e-03      0.00000e+00      0.00000e+00            2.24173e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.75219e-24      0.00000e+00      0.00000e+00            2.89507e-06      0.00000e+00      0.00000e+00 
+          2 :    1.89844e-05      0.00000e+00      0.00000e+00            7.24016e-05      0.00000e+00      0.00000e+00 
+          3 :    2.44797e-04      0.00000e+00      0.00000e+00            5.08919e-04      0.00000e+00      0.00000e+00 
+          4 :    1.03418e-03      0.00000e+00      0.00000e+00            1.65756e-03      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.01698e-24      0.00000e+00      0.00000e+00            1.08575e-06      0.00000e+00      0.00000e+00 
+          2 :    7.20618e-06      0.00000e+00      0.00000e+00            2.75069e-05      0.00000e+00      0.00000e+00 
+          3 :    9.35213e-05      0.00000e+00      0.00000e+00            1.94771e-04      0.00000e+00      0.00000e+00 
+          4 :    3.97211e-04      0.00000e+00      0.00000e+00            6.37280e-04      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    9.20687e-25      0.00000e+00      0.00000e+00            6.37030e-07      0.00000e+00      0.00000e+00 
+          2 :    4.15576e-06      0.00000e+00      0.00000e+00            1.58432e-05      0.00000e+00      0.00000e+00 
+          3 :    5.34396e-05      0.00000e+00      0.00000e+00            1.11015e-04      0.00000e+00      0.00000e+00 
+          4 :    2.25249e-04      0.00000e+00      0.00000e+00            3.60876e-04      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    5.05893e-26      0.00000e+00      0.00000e+00            1.13542e-07      0.00000e+00      0.00000e+00 
+          2 :    7.65414e-07      0.00000e+00      0.00000e+00            2.92501e-06      0.00000e+00      0.00000e+00 
+          3 :    1.00156e-05      0.00000e+00      0.00000e+00            2.09058e-05      0.00000e+00      0.00000e+00 
+          4 :    4.28284e-05      0.00000e+00      0.00000e+00            6.88001e-05      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.94515e-25      0.00000e+00      0.00000e+00            1.05792e-07      0.00000e+00      0.00000e+00 
+          2 :    6.80380e-07      0.00000e+00      0.00000e+00            2.59112e-06      0.00000e+00      0.00000e+00 
+          3 :    8.68191e-06      0.00000e+00      0.00000e+00            1.79973e-05      0.00000e+00      0.00000e+00 
+          4 :    3.63591e-05      0.00000e+00      0.00000e+00            5.81816e-05      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :   -1.24593e-26      0.00000e+00      0.00000e+00            2.82110e-09      0.00000e+00      0.00000e+00 
+          2 :    2.14489e-08      0.00000e+00      0.00000e+00            8.26367e-08      0.00000e+00      0.00000e+00 
+          3 :    2.97978e-07      0.00000e+00      0.00000e+00            6.31790e-07      0.00000e+00      0.00000e+00 
+          4 :    1.33620e-06      0.00000e+00      0.00000e+00            2.16494e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    6.50232e-26      0.00000e+00      0.00000e+00            2.65566e-08      0.00000e+00      0.00000e+00 
+          2 :    1.66721e-07      0.00000e+00      0.00000e+00            6.33770e-07      0.00000e+00      0.00000e+00 
+          3 :    2.09935e-06      0.00000e+00      0.00000e+00            4.33565e-06      0.00000e+00      0.00000e+00 
+          4 :    8.69348e-06      0.00000e+00      0.00000e+00            1.38817e-05      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    7.74642e-27      0.00000e+00      0.00000e+00            1.62125e-09      0.00000e+00      0.00000e+00 
+          2 :    8.74505e-09      0.00000e+00      0.00000e+00            3.28281e-08      0.00000e+00      0.00000e+00 
+          3 :    1.00631e-07      0.00000e+00      0.00000e+00            2.02285e-07      0.00000e+00      0.00000e+00 
+          4 :    3.84368e-07      0.00000e+00      0.00000e+00            6.04046e-07      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    3.58872e-26      0.00000e+00      0.00000e+00            1.20459e-08      0.00000e+00      0.00000e+00 
+          2 :    7.38575e-08      0.00000e+00      0.00000e+00            2.80244e-07      0.00000e+00      0.00000e+00 
+          3 :    9.17742e-07      0.00000e+00      0.00000e+00            1.88816e-06      0.00000e+00      0.00000e+00 
+          4 :    3.75724e-06      0.00000e+00      0.00000e+00            5.98649e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    1.85152e-26      0.00000e+00      0.00000e+00            4.93667e-09      0.00000e+00      0.00000e+00 
+          2 :    2.90490e-08      0.00000e+00      0.00000e+00            1.09861e-07      0.00000e+00      0.00000e+00 
+          3 :    3.52490e-07      0.00000e+00      0.00000e+00            7.20195e-07      0.00000e+00      0.00000e+00 
+          4 :    1.41336e-06      0.00000e+00      0.00000e+00            2.24287e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.80509e-26      0.00000e+00      0.00000e+00            8.63911e-09      0.00000e+00      0.00000e+00 
+          2 :    5.22763e-08      0.00000e+00      0.00000e+00            1.98150e-07      0.00000e+00      0.00000e+00 
+          3 :    6.44714e-07      0.00000e+00      0.00000e+00            1.32355e-06      0.00000e+00      0.00000e+00 
+          4 :    2.62227e-06      0.00000e+00      0.00000e+00            4.17286e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.23473e-26      0.00000e+00      0.00000e+00            6.35593e-09      0.00000e+00      0.00000e+00 
+          2 :    3.79136e-08      0.00000e+00      0.00000e+00            1.43545e-07      0.00000e+00      0.00000e+00 
+          3 :    4.63732e-07      0.00000e+00      0.00000e+00            9.49709e-07      0.00000e+00      0.00000e+00 
+          4 :    1.87254e-06      0.00000e+00      0.00000e+00            2.97563e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.56762e-26      0.00000e+00      0.00000e+00            7.66591e-09      0.00000e+00      0.00000e+00 
+          2 :    4.61417e-08      0.00000e+00      0.00000e+00            1.74823e-07      0.00000e+00      0.00000e+00 
+          3 :    5.67322e-07      0.00000e+00      0.00000e+00            1.16363e-06      0.00000e+00      0.00000e+00 
+          4 :    2.30134e-06      0.00000e+00      0.00000e+00            3.66027e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.36619e-26      0.00000e+00      0.00000e+00            6.86527e-09      0.00000e+00      0.00000e+00 
+          2 :    4.11083e-08      0.00000e+00      0.00000e+00            1.55688e-07      0.00000e+00      0.00000e+00 
+          3 :    5.03920e-07      0.00000e+00      0.00000e+00            1.03268e-06      0.00000e+00      0.00000e+00 
+          4 :    2.03878e-06      0.00000e+00      0.00000e+00            3.24102e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.48725e-26      0.00000e+00      0.00000e+00            7.34361e-09      0.00000e+00      0.00000e+00 
+          2 :    4.41139e-08      0.00000e+00      0.00000e+00            1.67114e-07      0.00000e+00      0.00000e+00 
+          3 :    5.41768e-07      0.00000e+00      0.00000e+00            1.11085e-06      0.00000e+00      0.00000e+00 
+          4 :    2.19547e-06      0.00000e+00      0.00000e+00            3.49121e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.41380e-26      0.00000e+00      0.00000e+00            7.05238e-09      0.00000e+00      0.00000e+00 
+          2 :    4.22833e-08      0.00000e+00      0.00000e+00            1.60155e-07      0.00000e+00      0.00000e+00 
+          3 :    5.18713e-07      0.00000e+00      0.00000e+00            1.06323e-06      0.00000e+00      0.00000e+00 
+          4 :    2.10001e-06      0.00000e+00      0.00000e+00            3.33878e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.45815e-26      0.00000e+00      0.00000e+00            7.22787e-09      0.00000e+00      0.00000e+00 
+          2 :    4.33862e-08      0.00000e+00      0.00000e+00            1.64347e-07      0.00000e+00      0.00000e+00 
+          3 :    5.32601e-07      0.00000e+00      0.00000e+00            1.09191e-06      0.00000e+00      0.00000e+00 
+          4 :    2.15751e-06      0.00000e+00      0.00000e+00            3.43059e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.43130e-26      0.00000e+00      0.00000e+00            7.12145e-09      0.00000e+00      0.00000e+00 
+          2 :    4.27173e-08      0.00000e+00      0.00000e+00            1.61805e-07      0.00000e+00      0.00000e+00 
+          3 :    5.24177e-07      0.00000e+00      0.00000e+00            1.07452e-06      0.00000e+00      0.00000e+00 
+          4 :    2.12263e-06      0.00000e+00      0.00000e+00            3.37490e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44752e-26      0.00000e+00      0.00000e+00            7.18568e-09      0.00000e+00      0.00000e+00 
+          2 :    4.31210e-08      0.00000e+00      0.00000e+00            1.63339e-07      0.00000e+00      0.00000e+00 
+          3 :    5.29261e-07      0.00000e+00      0.00000e+00            1.08501e-06      0.00000e+00      0.00000e+00 
+          4 :    2.14368e-06      0.00000e+00      0.00000e+00            3.40851e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.43772e-26      0.00000e+00      0.00000e+00            7.14688e-09      0.00000e+00      0.00000e+00 
+          2 :    4.28771e-08      0.00000e+00      0.00000e+00            1.62412e-07      0.00000e+00      0.00000e+00 
+          3 :    5.26190e-07      0.00000e+00      0.00000e+00            1.07867e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13096e-06      0.00000e+00      0.00000e+00            3.38820e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44362e-26      0.00000e+00      0.00000e+00            7.17024e-09      0.00000e+00      0.00000e+00 
+          2 :    4.30239e-08      0.00000e+00      0.00000e+00            1.62970e-07      0.00000e+00      0.00000e+00 
+          3 :    5.28039e-07      0.00000e+00      0.00000e+00            1.08249e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13862e-06      0.00000e+00      0.00000e+00            3.40043e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44008e-26      0.00000e+00      0.00000e+00            7.15619e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29356e-08      0.00000e+00      0.00000e+00            1.62635e-07      0.00000e+00      0.00000e+00 
+          3 :    5.26927e-07      0.00000e+00      0.00000e+00            1.08019e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13402e-06      0.00000e+00      0.00000e+00            3.39308e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44220e-26      0.00000e+00      0.00000e+00            7.16462e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29886e-08      0.00000e+00      0.00000e+00            1.62836e-07      0.00000e+00      0.00000e+00 
+          3 :    5.27594e-07      0.00000e+00      0.00000e+00            1.08157e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13678e-06      0.00000e+00      0.00000e+00            3.39749e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44093e-26      0.00000e+00      0.00000e+00            7.15956e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29568e-08      0.00000e+00      0.00000e+00            1.62715e-07      0.00000e+00      0.00000e+00 
+          3 :    5.27194e-07      0.00000e+00      0.00000e+00            1.08075e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13512e-06      0.00000e+00      0.00000e+00            3.39484e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44169e-26      0.00000e+00      0.00000e+00            7.16259e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29759e-08      0.00000e+00      0.00000e+00            1.62788e-07      0.00000e+00      0.00000e+00 
+          3 :    5.27434e-07      0.00000e+00      0.00000e+00            1.08124e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13611e-06      0.00000e+00      0.00000e+00            3.39643e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44123e-26      0.00000e+00      0.00000e+00            7.16078e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29645e-08      0.00000e+00      0.00000e+00            1.62744e-07      0.00000e+00      0.00000e+00 
+          3 :    5.27290e-07      0.00000e+00      0.00000e+00            1.08094e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13552e-06      0.00000e+00      0.00000e+00            3.39548e-06      0.00000e+00      0.00000e+00 
+
+
+  S T R E S S  C A L C U L A T I O N S  F O R  E L E M E N T  G R O U P    1
+
+       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN
+       NUMBER
+          1 :    2.44151e-26      0.00000e+00      0.00000e+00            7.16187e-09      0.00000e+00      0.00000e+00 
+          2 :    4.29713e-08      0.00000e+00      0.00000e+00            1.62770e-07      0.00000e+00      0.00000e+00 
+          3 :    5.27376e-07      0.00000e+00      0.00000e+00            1.08112e-06      0.00000e+00      0.00000e+00 
+          4 :    2.13588e-06      0.00000e+00      0.00000e+00            3.39605e-06      0.00000e+00      0.00000e+00 
+
+
+ S O L U T I O N   T I M E   L O G   I N   S E C
+
+     TIME FOR INPUT PHASE  . . . . . . . . . . . . . . =         0.00
+     TIME FOR CALCULATION OF STIFFNESS MATRIX  . . . . =         0.00
+     TIME FOR FACTORIZATION OF STIFFNESS MATRIX  . . . =         0.00
+     TIME FOR LOAD CASE SOLUTIONS  . . . . . . . . . . =        39.58
+
+      T O T A L   S O L U T I O N   T I M E  . . . . . =        39.59

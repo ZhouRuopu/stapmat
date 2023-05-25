@@ -21,7 +21,9 @@ sdata = SolutionData;
 
 % Read InPut file
 global fname;
-fname = 'stap90.in';              % Specify the file name
+fname = 'Beam1.in';              % Specify the file name
+global fpath;
+fpath = '.\stapmat\Data\test2\';
 ReadFile_DYN(fname);
 
 % Write basic data of program 
@@ -32,6 +34,7 @@ GetStiff();
 
 % Triangularize stiffness matrix
 DYN = cdata.DYN;
+DYN=1;
 if(DYN)
    DynSolve();
 else

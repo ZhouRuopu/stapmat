@@ -16,24 +16,36 @@
 %*                                                                 *
 %* *****************************************************************
 
-function BeamStress(NUM, NG)
+function BeamStress(NG, T)
 
 % Get global data
 global cdata;
 global sdata;
 
 IOUT = cdata.IOUT;
-NUME = sdata.NUME; MATP = sdata.MATP; XYZ = sdata.XYZ;
-E = sdata.E; AREA = sdata.AREA; LM = sdata.LM;
-U = sdata.DIS(:, NUM);
+NUME = sdata.NUME; MATP = sdata.MATP; XYZ = sdata.XYZ; NUMNP = cdata.NUMNP;
+E = sdata.E; AREA = sdata.AREA; nu=sdata.nu;
+STRAIN = sdata.STRAIN; STRESS = sdata.STRESS;
+
+UOrign = sdata.DIS(:, T); IJ = sdata.IJ;
+
+U = zeros(6, NUMNP);
+STRAIN = zeros(NUMNP, 6);
+STRESS = zeros(NUMNP, 6);
+countIJ = zeros(NUMNP,1);
+
+for i = 1:NUMNP
+    U(:,i) = UOrign(6*i-5,6*i); 
+end
 
 fprintf(IOUT, ['\n\n  S T R E S S  C A L C U L A T I O N S  F O R  ' ...
     'E L E M E N T  G R O U P %4d\n\n' ... 
-    '       ELEMENT             FORCE            STRESS\n' ...
+    '       ELEMENT        STRESS11_LN       STRESS12_LN       STRESS13_LN       STRESS12_RN       STRESS12_RN       STRESS12_RN\n' ...
     '       NUMBER\n'], NG);
 
 for N = 1:NUME
     MTYPE = MATP(N);
+    I = IJ(N); J = IJ(N);
    
 %   compute the length of truss element
     DX = XYZ(1, N) - XYZ(4, N);
@@ -49,26 +61,42 @@ for N = 1:NUME
     gammaxz1 = 0.0;
     gammaxz2 = 0.0;
 
-    for L = 1:12
-        if LM(L,N) > 0
-           du0dx = [1-1/XL, 1/XL]* [U(1,LM(L,N)), U(7,LM(L,N))]';
-           d2w0dx1 = [6/XL2 + 12/XL2, 4/XL-6/XL, 6/XL2 - 12/XL2, -6/XL+2/XL]* [U(3,LM(L,N)), U(5,LM(L,N)), U(9,LM(L,N)), U(11,LM(L,N))]';
-           d2v0dx1 = [6/XL2 + 12/XL2, 4/XL-6/XL, 6/XL2 - 12/XL2, -6/XL+2/XL]* [U(2,LM(L,N)), U(6,LM(L,N)), U(8,LM(L,N)), U(12,LM(L,N))]';
-           epsx1 = epsx1 + du0dx - d2w0dx1 * XYZ(3, N) - d2v0dx1 * XYZ(2, N);
+    du0dx = [1-1/XL, 1/XL]* [U(1,I), U(1,J)]';
+    d2w0dx1 = [6/XL2 + 12/XL2, 4/XL-6/XL, 6/XL2 - 12/XL2, -6/XL+2/XL]* [U(3,I), U(5,I), U(3,J), U(5,J)]';
+    d2v0dx1 = [6/XL2 + 12/XL2, 4/XL-6/XL, 6/XL2 - 12/XL2, -6/XL+2/XL]* [U(2,I), U(6,I), U(2,J), U(6,J)]';
+    epsx1 = du0dx - d2w0dx1 * XYZ(3, N) - d2v0dx1 * XYZ(2, N);
 
-           d2w0dx2 = [6/XL2, 4/XL, 6/XL2, 2/XL]* [U(3,LM(L,N)), U(5,LM(L,N)), U(9,LM(L,N)), U(11,LM(L,N))]';
-           d2v0dx2 = [6/XL2, 4/XL, 6/XL2, 2/XL]* [U(2,LM(L,N)), U(6,LM(L,N)), U(8,LM(L,N)), U(12,LM(L,N))]';
-           epsx2 = epsx2 + du0dx - d2w0dx2 * XYZ(6, N) - d2v0dx2 * XYZ(5, N);
+    d2w0dx2 = [6/XL2, 4/XL, 6/XL2, 2/XL]* [U(3,I), U(5,I), U(3,J), U(5,J)]';
+    d2v0dx2 = [6/XL2, 4/XL, 6/XL2, 2/XL]* [U(2,I), U(6,I), U(2,J), U(6,J)]';
+    epsx2 = epsx2 + du0dx - d2w0dx2 * XYZ(6, N) - d2v0dx2 * XYZ(5, N);
 
-           dthetadx = [1-1/XL, 1/XL]* [U(4,LM(L,N)), U(10,LM(L,N))]';
-           gammaxy1 = gammaxy1 - dthetadx*XYZ(3, N);
-           gammaxy2 = gammaxy2 - dthetadx*XYZ(6, N);
-           gammaxz1 = gammaxz1 + dthetadx*XYZ(2, N);
-           gammaxz2 = gammaxz2 + dthetadx*XYZ(2, N);
-        end
-    end
+    dthetadx = [1-1/XL, 1/XL]* [U(4,I), U(4,J)]';
+    gammaxy1 = - dthetadx*XYZ(3, N);
+    gammaxy2 = - dthetadx*XYZ(6, N);
+    gammaxz1 = dthetadx*XYZ(2, N);
+    gammaxz2 = dthetadx*XYZ(5, N);
+
+    strain_local_I = [epsx1, 0, 0, gammaxy1, 0, gammaxz1];
+    strain_local_J = [epsx2, 0, 0, gammaxy2, 0, gammaxz2];
+
+    STRAIN(I,:) = STRAIN(I,:) + strain_local_I;
+    STRAIN(J,:) = STRAIN(J,:) + strain_local_J;
+    countIJ(I,:) =  countIJ(I,:)+1;
+    countIJ(J,:) =  countIJ(J,:)+1;
+
+    D0 = E*(1-nu)/((1+nu)*(1-2*nu));
+    d1 = nu/(1-nu); d2 = (1-2*nu)/(2*(1-nu));
+    D = D0.*[1, D];
+
     
-    fprintf(IOUT, ' %10d           %13.6e    %13.6e\n', N, P, STR);
+    fprintf(IOUT, ' %10d :  %13.5e    %13.5e    %13.5e          %13.5e    %13.5e    %13.5e \n', N, epsx1, gammaxy1, gammaxz1, epsx2, gammaxy2, gammaxz2);
 end
+
+% 应变磨平操作
+for i = 1:NUMNP
+    STRAIN(3*i-2:3*i,:) = STRAIN(3*i-2:3*i,:)./countIJ(i,:);
+end
+
+
 
 end

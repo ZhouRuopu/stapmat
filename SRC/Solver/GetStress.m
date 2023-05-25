@@ -17,7 +17,7 @@
 %*                                                                 *
 %* *****************************************************************
 
-function GetStress(NUM)
+function GetStress(NUM, T)
 
 % Different type of element
 global cdata;
@@ -27,7 +27,7 @@ IOUT = cdata.IOUT;
 for N = 1:NUMEG
     NPAR1 = cdata.NPAR(1);
     if (NPAR1 == 1) TrussStress(NUM, N)
-    elseif (NPAR1 == 2) BeamStress(NUM, N)
+    elseif (NPAR1 == 2) BeamStress(NUM, T)
     else error(' *** ERROR *** No Such Element'); end 
 end
 

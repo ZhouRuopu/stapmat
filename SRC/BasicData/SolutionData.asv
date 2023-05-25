@@ -36,6 +36,21 @@ classdef SolutionData
                   %                     2 : Y-direction;
                   %                     3 : Z-direction;
         FLOAD;    % double, FLOAD(NLOAD), Magnitude of load
+        IJ;       % IJ(NUME,2)， 储存梁单元节点编号
+        BC;       % 储存边界条件信息
+        XX; YY; ZZ; %
+
+        OUTT;     % 输出时间
+        OUTV;     % 输出节点速度
+        OUTA;     % 输出节点加速度
+
+        
+        XNOD;
+        XDIRN;
+        XDIS;
+        VNOD;
+        VDIRN;
+        VVEL;
 
         
         
@@ -86,7 +101,8 @@ classdef SolutionData
         CTIME;       % total compute time;
         ERR;
         GAMMA1;
-        GAMMA1;
+        GAMMA2;
+        GAMMA3;
 
 
         

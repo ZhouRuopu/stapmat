@@ -36,7 +36,8 @@ af=rho/(rho+1);                     %广义alpha法计算参数
 am=(2*rho-1)/(rho+1);               %广义alpha法计算参数
 Beta=(1/4)*((1-am+af)^2);           %广义alpha法计算参数
 Gamma=(1/2)-am+af;                  %广义alpha法计算参数
-DDa0=LDLT_FOR_G(M,Q-K*a0-C*Da0);    %用LDLT分解求解线性方程组M*DDa0=Q0-K*a0-C*Da0从而求解出t0=0时刻的加速度DDa0
+% DDa0=LDLT_FOR_G(M,Q-K*a0-C*Da0);    %用LDLT分解求解线性方程组M*DDa0=Q0-K*a0-C*Da0从而求解出t0=0时刻的加速度DDa0
+DDa0=M\(Q-K*a0-C*Da0);
 
 %%%%%%%%%%%%%%%%%%%%%用不含误差估计的广义alpha求解t1时刻的a1、Da1和DDa1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Q_bar=zeros(n,1);
@@ -49,6 +50,7 @@ Q_bar=subs(Q,t,t-af*intimestep)-af*K*a0+M*(c0*a0+c2*Da0+c3*DDa0)+C*(c1*a0+c4*Da0
 a1=LDLT_FOR_G(K_bar,Q_bar);                                                                                     %用LDLT分解求解线性方程组K_bar*a1=Q_bar计算t1时刻的位移a1
 DDa1=c6*(a1-a0)-c7*Da0-c8*DDa0;                                                                                 %计算t1时刻的加速度DDa1
 Da1=c9*(a1-a0)+c10*Da0+c11*DDa0;                                                                                %计算t1时刻的速度Da1
+fprintf('time = %3.2f, ...\n', t);
 %%%%%%%%%%%%%%%%%%%%%用不含误差估计的广义alpha求解t1时刻的a1、Da1和DDa1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Gene_Alpha_Integ_Linear主体%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,6 +109,7 @@ while Time(i,1)<=time_limit
              um(i+2,1)=norm(u(1:n,i+2));
              i=i+1;
        end
+             fprintf('time = %3.2f, norm = %3.2f...\n', t, npr);
 end
      
 end
